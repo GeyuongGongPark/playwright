@@ -1,10 +1,16 @@
-import {test, expect} from '@playwrighy/test';
+import { test, expect } from '@playwright/test';
+import { URLS } from '../LFBZ/URL/url_base.js';
+import { SELECTORS } from '../LFBZ/URL/config.js';
+import { getCurrentLoginCredentials } from '../LFBZ/URL/config.js'; 
+
 
 test('로그인 시나리오', async ({page}) => {
-    await page.goto('https://business.lawform.io/login');
-    await page.waitForSelector('input[type="email"]');
-    await page.type('input[type="email"]', 'ggpark+id20250211162329770_m@amicuslex.net');
-    await page.waitForSelector('input[type="password"]');
-    await page.type('input[type="password"]', 'q1w2E#R$');
-    await page.click('button[type="submit"]', { nth: 0});
+    await page.goto(URLS.LOGIN.LOGIN);
+    await page.waitForSelector(SELECTORS.LOGIN.EMAIL_INPUT);
+    await page.type(SELECTORS.LOGIN.EMAIL_INPUT, getCurrentLoginCredentials().EMAIL);
+    await page.waitForSelector(SELECTORS.LOGIN.PASSWORD_INPUT);
+    await page.type(SELECTORS.LOGIN.PASSWORD_INPUT, getCurrentLoginCredentials().PASSWORD);
+    await page.click(SELECTORS.LOGIN.SUBMIT_BUTTON, { nth: 0});
+    await page.goto(URLS.LOGIN.DASHBOARD);
+    await page.waitForSelector(SELECTORS.LOGIN.DASHBOARD); 
 });
