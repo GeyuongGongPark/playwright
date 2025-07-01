@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { URLS } from '../LFBZ/URL/url_base.js';
 import { SELECTORS } from '../LFBZ/URL/config.js';
 import { getCurrentLoginCredentials } from '../LFBZ/URL/config.js'; 
+import { getFormattedTimestamp } from '../LFBZ/URL/utils.js';
 
 
 test('로그인 시나리오', async ({page}) => {
